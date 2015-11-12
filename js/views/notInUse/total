@@ -1,0 +1,36 @@
+var app = app || {};
+
+app.Total = Backbone.View.extend({
+  
+    el: $('#foodList'),
+
+
+    //tagName: 'div',
+
+   // collection: app.results,
+  
+    //template: _.template( $('#search_Template').html() ),
+
+    /*events: {
+      'click #search': 'search',
+      'keypress #food': 'enterSearch',
+      'click #add': 'add'
+    },
+    */
+    initialize: function() {
+      this.total = $('#total span');
+    },
+    render: function() {
+      var total = 0;
+
+      _.each(consumed.getCompleted(), function(elem){
+        total += elem.get('calories');
+      });
+
+      // Update the total price
+      this.total.text('$'+total);
+
+      return this;
+    }
+  });
+
