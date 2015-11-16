@@ -6,16 +6,11 @@ var app = app || {};
  */
 app.Consumed = Backbone.Collection.extend({
 
-  model: app.Food, 
+  model: app.ConsumedFood, 
 
   localStorage: new Backbone.LocalStorage('Consumed'),
 
-  urlBase: '/js/collections/consumed.js',
-
-  getCompleted: function(){
-			return this.where({completed:true});
-		}
-
+  urlBase: '/js/collections/consumed.js'
 });
 
 app.consumed = new app.Consumed();

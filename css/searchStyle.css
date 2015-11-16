@@ -1,18 +1,10 @@
-#gradient{
- width:0;
- height:50px;
- margin:0 auto;
- border-radius:100%;
- -webkit-box-shadow: 0 50px 200px 150px rgba(255, 255, 255, 0.93);
- -moz-box-shadow: 0 50px 200px 150px rgba(255, 255, 255, 0.93);
- box-shadow: 0 50px 200px 150px rgba(255, 255, 255, 0.93);
-}
 .searchbox{
+ text-align: center; 
  background-color:#fffbf8;
  padding:13px;
  width:335px;
- margin:50px auto;
- margin-right: 40px;
+ margin: 0 auto;
+ margin-top: 25px;
  -webkit-box-sizing:border-box;
  -moz-box-sizing:border-box;
  box-sizing:border-box;
@@ -33,7 +25,7 @@
  0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset, 
  0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
 }
-input[type="search"]{
+#food{
  width:250px;
  height:30px;
  padding-left:5px;
@@ -64,7 +56,7 @@ input[type="search"]{
  0 -1px 1px 0 #f2f2f2 inset,
  0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
 }
-button[type="submit"]{
+#search{
  width:35px;
  height:30px;
  background-image:url(img/search-btn.png);
@@ -76,6 +68,6 @@ button[type="submit"]{
  border:none;
  cursor:pointer;
 }
-input[type="search"]:focus{
+#food:focus{
  outline:0;
 }
