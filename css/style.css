@@ -1,76 +1,149 @@
-body{
- background-image: url("diamond_upholstery.png");
- background-size: 100%;
- overflow: scroll;
+body {}
+/* background-image: url("diamond_upholstery.png");*/
+
+.row-style1 {
+    background-color: #002b80;
 }
-
-.bcg{
-	background-color: #ffffe5;
- 	margin: 0 auto;
+.bcg {
+    background-color: #ffffe5;
+    margin: 0 auto;
 }
-
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  img.bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
+@media screen and (max-width: 1024px) {
+    /* Specific to this particular image */
+    
+    img.bg {
+        left: 50%;
+        margin-left: -512px;
+        /* 50% */
+    }
 }
-
-
-.container{
-
+.container {
     left: 0px;
     top: 0px;
-    z-index: 100;
     min-width: 100%;
-
 }
-
-#main{
-	margin: 0 auto;
+#main {
+    margin: 0 auto;
 }
-
-#button{
-	margin-top: 200px;
+#button {
+    margin-top: 200px;
 }
-
-
-h1 { 
-	color: #808080; 
-	font-family: "Great Vibes", cursive; 
-	font-size: 55px; 
-	margin-top: 25px;
-	font-weight: bold; 
-	margin: 0 auto;
-	text-align: center; 
-	text-shadow: 0 1px 1px #fff; 
+img {
+    width: 3%;
+    height: 3%;
 }
-
-h2 { 
-	color: #0099CC; 
-	font-family: "Great Vibes", cursive; 
-	font-size: 25px; 
-	line-height: 160px; 
-	font-weight: bold; 
-	margin-bottom: 0px; 
-	margin-top: 0px; 
-	text-align: center; 
-	text-shadow: 0 1px 1px #fff; 
+h1 {
+    color: #808080;
+    font-family: "Great Vibes", cursive;
+    font-size: 55px;
+    margin: 0 auto;
+    margin-left: 10%;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 0 1px 1px #fff;
 }
-
-.hide{
-	visibility: none;
+h2 {
+    color: #0099CC;
+    font-family: "Great Vibes", cursive;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-bottom: 2 px;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
 }
-#footer{
-	position: relative;
+input {
+    border-color: #ffffff;
+    text-align: center;
 }
-
-#add{
-	margin-top: 10px;
-	}
-#edit{
-	margin-top: 10px;
+#dateHeading {
+    color: #0099CC;
+    font-family: "Great Vibes", cursive;
+    font-size: 30px;
+    margin-top: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
 }
-#save{
-	margin-top: 10px;
+.hide {
+    visibility: none;
+}
+#footer {
+    position: relative;
+}
+#add {
+    margin-top: 10px;
+}
+#edit {
+    margin-top: 10px;
+}
+#save {
+    margin-top: 10px;
+}
+#foodDate {
+    margin: 0 auto;
+}
+#searchFood {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 5 px;
+    margin-left: 5%;
+    text-align: left;
+}
+#results {
+    margin-top: 10px;
+    overflow: auto;
+    max-height: 60vh;
+}
+.list-group-item {
+    text-align: center;
+}
+#detailedData {
+    margin: 0 auto;
+    margin-top: 40%;
+    text-align: left;
+    background-color: #f5f5f0;
+}
+#detailedData table {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    text-align: center;
+}
+.smallHeader {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+}
+.btn-class {
+    margin: 0 auto;
+    display: inline-block;
+    border: 1px solid #d9d9d9;
+    color: #ffffff;
+    border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    font-family: Verdana;
+    width: auto;
+    height: auto;
+    font-size: 16px;
+    padding: 5px 20px;
+    box-shadow: inset 0 1px 0 0 #fff6ce, inset 0 -1px 0 0 #e3c852, inset 0 0 0 1px #fce88d, 0 2px 4px 0 #D4D4D4;
+    -moz-box-shadow: inset 0 1px 0 0 #fff6ce, inset 0 -1px 0 0 #e3c852, inset 0 0 0 1px #fce88d, 0 2px 4px 0 #D4D4D4;
+    -webkit-box-shadow: inset 0 1px 0 0 #fff6ce, inset 0 -1px 0 0 #e3c852, inset 0 0 0 1px #fce88d, 0 2px 4px 0 #D4D4D4;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #999999;
+}
+.btn-class:hover,
+.btn-class:active {
+    border: 1px solid ##d9d9d;
+    color: #000000;
+    box-shadow: inset 0 1px 0 0 #b3b3b3, inset 0 -1px 0 0 #e3c852, inset 0 0 0 1px #fce88d;
+    -moz-box-shadow: inset 0 1px 0 0 #b3b3b3, inset 0 -1px 0 0 #e3c852, inset 0 0 0 1px #fce88d;
+    -webkit-box-shadow: inset 0 1px 0 0 #b3b3b3, inset 0 -1px 0 0 #e3c852, inset 0 0 0 1px #fce88d;
+    background-color: #d9d9d9;
+}
+#quantity {
+    text-align: center;
 }

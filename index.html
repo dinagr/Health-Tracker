@@ -1,160 +1,229 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/tableStyle.css">
-<link rel="stylesheet" href="css/searchStyle.css">
-<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-<script src="js/lib/underscore-min.js"></script>
-<script src="js/lib/backbone.js"></script>
-<script src="js/lib/backbone.localStorage.js"></script>
-<title>Health-Tracker</title>
-</head>
-<body>
-  <div class = "container">
-    <div id="main">
-      <div class="row">
-        <div class="col-md-8">
-          <h1>What Did you eat today?</h1>
-        </div>
-        <div class="col-md-4"> 
-          <div class="searchbox">
-          <input id="food" placeholder="Search for food..."></input>
-          <button id="search">&nbsp;</button>
-        </div>
-      </div>
-    </div>
-    <div class="row" id="data">
-      <div class = "col-md-5" id="dailyFood">
-        <div class="wrapper">
-          <div id = "foodList" class="table">
-          </div>
-        </div>
-        
-        <div id="chosenFood">
-        </div>
-      </div>
-      <div class = "col-md-2">
-        <div id = "editButoon">
-        </div>
-        <div id = "saveButoon">
-        </div>
-        
-      </div>
-      <div class = "col-md-5">
 
-        <div class="wrapper">
-          <div id = "results" class="table">
-          </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/searchStyle.css">
+    <link rel="stylesheet" href="css/tableStyle.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/lib/date.js"></script>
+    <script src="js/lib/jQuery-min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/lib/underscore-min.js"></script>
+    <script src="js/lib/backbone.js"></script>
+    <script src="js/lib/backbone.localStorage.js"></script>
+    <title>Health-Tracker</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="main">
+            <div class="row">
+                <h1>Health Tracker</h1>
+            </div>
+            <div class="row">
+                <div class="row-style1">bcg</div>
+            </div>
+            <div class="row">
+                <div class="row-style1">bcg</div>
+            </div>
+            <div class="row" id="date">
+                <h2>What did you eat today? <input type="text" id="datepicker"> <button class="btn-class" id = "set">Set</button></h2>
+            </div>
+            <div class="row">
+                <div id="searchFood">
+                    <input id="food" placeholder="Search for food..."></input>
+                    <button id="search">&nbsp;</button>
+                </div>
+            </div>
+            <div class="row" id="data">
+                <div class="col-md-4">
+                    <div id="results" class="list-group">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="detailedData">
+                    </div>
+                </div>
+                <div class="col-md-5" id="dailyFood">
+                    <div class="wrapper">
+                        <div id="foodList" class="table">
+                        </div>
+                    </div>
+                    <div id="chosenFoodTotal">
+                    </div>
+                    <div id="editButoon">
+                    </div>
+                    <div id="saveButoon">
+                    </div>
+                </div>
+            </div>
+            <footer id="footer"></footer>
         </div>
-        <footer id="footer"></footer>
-      </div>
     </div>
-    
-  </div>
-  <script type="text/template" id="addButton_Template">
-    <button id = "add" >Add</button>
-  </script>
-  <script type="text/template" id="editButtons_Template">
-    <button id = "edit">Edit</button>
-  </script>
-  <script type="text/template" id="saveButtons_Template">
-    <button id = "save">Save</button>
-  </script>
-  <script type="text/template" id="searchTitle_Template">
-   <div class="rowt header-grey" id="title">
-      <div class="cell">
-        Name
-      </div>
-      <div class="cell">
-        Calories
-      </div>
-      <div class="cell">
-        Choose
-      </div>
-    </div>
-  </script>
-  <script type="text/template" id="search_Template">
-    <div class="rowt">
-      <div class="cell">
-        <%= name %> 
-      </div>
-      <div class="cell">
-        <%= calories %>
-      </div>
-      <div class="cell">
-         <input id="choose" type="checkbox" name="<%= id %>" <%= completed ? 'checked' : '' %>>
-      </div>
-    </div>
-  </script>
-  <script type="text/template" id="choosenTitle_Template">
-   <div class="rowt header-green" id="titleChosen">
-      <div class="cell">
-        Name
-      </div>
-      <div class="cell">
-        Quantity
-      </div>
-      <div class="cell">
-        Calories per unit
-      </div>
-      <div class="cell">
-        Unit
-      </div>
-      <div class="cell">
-        Unit size
-      </div>
-    </div>
-  </script>
-  <script type="text/template" id="foodList_Template">
-    <div class="rowt">
-      <div class="cell">
-        <%= name %> 
-      </div>
-      <div class="cell quantity" id = <%= id %>>
-         <%= consumedQty %>
-      </div>
-      <div class="cell">
-         <%= calories %>
-      </div>
-      <div class="cell">
-         <%= unit %>
-      </div>
-      <div class="cell">
-         <%= qty %>
-      </div>
-    </div>
-  </script>
-  <script type="text/template" id="total_Template">
-    <div class="rowt header-summary" id="totalCal">
-      <div class="cell">
-        Total Calories
-      </div>
-      <div class="cell">
-        <%= total %>
-      </div>
-    </div>
-  </script>
-  <script type="text/template" id="totalPro_Template">
-    <div class="rowt header-summary" id="totalPro">
-      <div class="cell">
-        Total Calories
-      </div>
-      <div class="cell">
-        <%= totaPro %>
-      </div>
-    </div>
-  </script>
+    <script type="text/template" id="detailedData_Template">
+        <table>
+            <tr>
+                <td class="smallHeader">Calories</td>
+                <td>
+                    <%= Calories %>
+                </td>
+            </tr>
+            <tr>
+                <td class="smallHeader">Serving of </td>
+                <td>
+                    <%= Serving %>
+                </td>
+            </tr>
+            <tr>
+                <td class="smallHeader">Protein </td>
+                <td>
+                    <%= Protein %>
+                </td>
+            </tr>
+            <tr>
+                <td class="smallHeader">Sugar</td>
+                <td>
+                    <%= Sugar %>
+                </td>
+            </tr>
+            <tr>
+                <td class="smallHeader">Vitamin A</td>
+                <td>
+                    <%= VitaminA %>
+                </td>
+            </tr>
+            <tr>
+                <td class="smallHeader">Vitamin C</td>
+                <td>
+                    <%= Vitamin %>
+                </td>
+            </tr>
+        </table>
+    </script>
+    <script type="text/template" id="addButton_Template">
+        <button class="btn-class" id="add">Add</button>
+    </script>
+    <script type="text/template" id="editButtons_Template">
+        <button class="btn-class" id="edit">Edit</button>
+    </script>
+    <script type="text/template" id="saveButtons_Template">
+        <button class="btn-class" id="save">Save</button>
+    </script>
+    <script type="text/template" id="searchTitle_Template">
+        <div class="rowt header-grey" id="title">
+            <div class="cell">
+                Name
+            </div>
+            <div class="cell">
+                Choose
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="search_Template">
+        <div class="rowt">
+            <div class="cell">
+                <%= name %>
+            </div>
+            <div class="cell">
+                <input id="choose" type="checkbox" name="<%= id %>" <%=c ompleted ? 'checked' : '' %>>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="choosenTitle_Template">
+        <div class="rowt header-grey" id="titleChosen">
+            <div class="cell">
+                Name
+            </div>
+            <div class="cell">
+                Quantity
+            </div>
+            <div class="cell">
+                Calories
+            </div>
+            <div class="cell">
+                Remove
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="foodList_Template">
+        <div class="rowt" id="row<%= id %>">
+            <div class="cell">
+                <%= name %>
+            </div>
+            <div class="cell quantity" id="food<%= id %>">
+                <%= consumedQty %>
+            </div>
+            <div class="cell">
+                <%= calories %>
+            </div>
+            <div class="cell">
+                <button class="btn-class remove" id="<%= id %>">-</button>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="total_Template">
+        <h2>Summary</h2>
+        <div class="rowt header-summary" id="totalCal">
+            <div class="cell">
+                Calories
+            </div>
+            <div class="cell">
+                Sugars
+            </div>
+            <div class="cell">
+                Vitamin A
+            </div>
+            <div class="cell">
+                Vitamin C
+            </div>
+            <div class="cell">
+                Iron
+            </div>
+            <div class="cell">
+                Fat
+            </div>
+        </div>
+        <div class="rowt">
+            <div class="cell">
+                <%= totalCal %>
+            </div>
+            <div class="cell">
+                <%= totalSugars %>
+            </div>
+            <div class="cell">
+                <%= totalVitaminA %>
+            </div>
+            <div class="cell">
+                <%= totalVitaminC %>
+            </div>
+            <div class="cell">
+                <%= totalIron %>
+            </div>
+            <div class="cell">
+                <%= totalFat %>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="totalPro_Template">
+        <div class="rowt header-summary" id="totalPro">
+            <div class="cell">
+                Total Protain
+            </div>
+            <div class="cell">
+                <%= totaPro %>
+            </div>
+        </div>
+    </script>
     <script src="js/models/consumedFood.js"></script>
     <script src="js/collections/consumed.js"></script>
     <script src="js/views/consumedFoodList.js"></script>
     <script src="js/views/foodSearch.js"></script>
-    <script src="js/views/total.js"></script>
-  </div>
+    </div>
 </body>
-</html>
 
+</html>
