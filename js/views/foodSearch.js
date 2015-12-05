@@ -19,8 +19,7 @@ app.SearchView = Backbone.View.extend({
         'click #datepicker': 'chooseDate',
         'click .list-group-item': 'getData',
         'click #closeWindow': 'closeDetailedData',
-        'click .remove': 'remove',
-        'click #set': 'setNewDate'
+        'click .remove': 'remove'
     },
     //Initialize data for the previous view wen ate app is opened
     initialize: function() {
@@ -55,12 +54,12 @@ app.SearchView = Backbone.View.extend({
         $(rowId).html('');
         this.calcTotal();
     },
-    setNewDate: function() {
+    setNewDate: function(newDate) {
         //If the user choose a new date - show the cosumed food from the new date 
-        this.dateFood = $('#datepicker')[0].value;
+        this.dateFood = newDate;
         $('#foodList').html('');
         $('#results').html('');
-        view.render();
+        this.render();
     },
     calcTotal: function() {
         //calc the total consumption detalis daily
@@ -77,12 +76,12 @@ app.SearchView = Backbone.View.extend({
             totalIron += elem.get('iron') * elem.get('consumedQty');
         });
         $('#chosenFoodTotal').html(this.template({
-            totalCal: totalCal,
-            totalSugars: totalSugars,
-            totalVitaminA: totalVitaminA,
-            totalVitaminC: totalVitaminC,
-            totalIron: totalIron,
-            totalFat: totalFat
+            totalCal: totalCal.toFixed(1),
+            totalSugars: totalSugars.toFixed(1),
+            totalVitaminA: totalVitaminA.toFixed(1),
+            totalVitaminC: totalVitaminC.toFixed(1),
+            totalIron: totalIron.toFixed(1),
+            totalFat: totalFat.toFixed(1)
         }));
 
     },
@@ -116,7 +115,7 @@ app.SearchView = Backbone.View.extend({
                     };
                 })
                 .fail(function(err) {
-                    console.log("Could not load data from nutritionix!");
+                    alert("Could not load data from nutritionix!");
                 });
         };
     },
@@ -159,7 +158,7 @@ app.SearchView = Backbone.View.extend({
                     view.calcTotal();
                 })
                 .fail(function(err) {
-                    console.log("Could not load data from nutritionix!");
+                    alert("Could not load data from nutritionix!");
                 });
         };
         this.closeDetailedData();
@@ -202,7 +201,10 @@ app.SearchView = Backbone.View.extend({
             dateFormat: "dd/mm/yy",
             buttonImage: "css/img/calendar.png",
             buttonImageOnly: true,
-            buttonText: "Select date"
+            buttonText: "Select date",
+            onSelect: function(dateText, inst) { 
+                view.setNewDate(dateText);
+            }
         });
         $('#datepicker').datepicker('setDate', 'today');
     }

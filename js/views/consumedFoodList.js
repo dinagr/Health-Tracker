@@ -55,7 +55,7 @@ app.ConsumedFoodList = Backbone.View.extend({
                 });
             }
             else{
-                alert('You can enter only numbers!')
+                alert('You can enter only numbers!');
             };
         };
         $(id).replaceWith('<div class="cell quantity" id ="food' + this.model.get('id') + '">' + this.model.get('consumedQty') + '</div>');
